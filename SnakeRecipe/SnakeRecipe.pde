@@ -4,9 +4,11 @@
 // The Segment class will be used to represent each part of the moving snake.
 
 class Segment {
-
+int foodX;
+int foodY;
   //2. Create x and y member variables to hold the location of each segment.
 int x;
+
 int y;
   // 3. Add a constructor with parameters to initialize each variable.
 public Segment(int x, int y){
@@ -44,7 +46,7 @@ int food=1;
 
 // 8. Create and initialize foodX and foodY variables to hold the location of the food.
 
-int foodY= ((int)random(50)*10);
+int foodY = ((int)random(50)*10);
 // (Hint: use the random method to set both the x and y to random locations within the screen size (500 by 500).)
 
 int foodX = ((int)random(50)*10);
@@ -188,7 +190,9 @@ void collision() {
      // Increase the amount of food eaten and set foodX and foodY to new random locations.
      if(foodX==head.x&&foodY==head.y){
        food++;
-     }
+   foodX = ((int)random(50)*10);  
+   foodY = ((int)random(50)*10);  
+   }
 }
 
 
@@ -213,12 +217,22 @@ checkTailCollision();
 tail.add(head);
   // To keep your tail the right length:
   // while the tail size is greater than the number of food pieces eaten, remove the first Segment in your tail.
-  
+  if(tail.size()>food){
+    tail.remove(1);
+  }
 
 }
 
 void drawTail() {
     // Draw a 10 by 10 rectangle for each Segment in your snake ArrayList.
+
+    for(Segment a : tail){
+     rect(a.x,a.y,10,10);
+  
+
+    }
+    
+    
 }
 
 
@@ -227,7 +241,11 @@ void drawTail() {
 void checkTailCollision() {
 
   // If your head has the same location as one of your segments...
-
+  for(int i=0; i<tail.size; i++;){
+if(head.x==a.x){
+  food=1;
+}
+  }
   // reset your food variable
 
   //Call this method at the beginning of your manageTail method.
